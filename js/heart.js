@@ -17,7 +17,7 @@
     gameloop();
 	  };
   function gameloop() {
-    for (const i=0;i<hearts.length;i++) {
+    for (var i=0;i<hearts.length;i++) {
       if (hearts[i].alpha <=0) {
         document.body.removeChild(hearts[i].el);
         hearts.splice(i,1);
