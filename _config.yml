@@ -1,1 +1,5 @@
-theme: jekyll-theme-cayman
+deploy:
+  type: git
+  repo: https://github.com/xiajngsi/xiajngsi.github.io
+  # example, https://github.com/hexojs/hexojs.github.io
+  branch: gh-pages
