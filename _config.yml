@@ -3,3 +3,4 @@ deploy:
   repo: https://github.com/xiajngsi/xiajngsi.github.io
   branch: gh-pages
 theme: next
+title: "candice"
