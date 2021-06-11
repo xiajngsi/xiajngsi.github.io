@@ -20,28 +20,32 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="candice">
-<meta property="og:url" content="http://example.com/index.html">
+  <meta name="description" content="表单涉及到的交互场景简单交互（AB 字段代表单个或多个字段）  A 字段的值控制 B 字段的显隐 A 字段值控制 B 字段的属性 A 字段值控制 B 字段的值  下拉选择相关  提供请求接口地址或者数据请求方法回去请求下拉选择的参数， 或者直接传入下拉选项，这时候 A 字段的值修改需要清掉 B 字段的值 A 字段的值改变 B 字段需要重新请求  字段组相关的功能，字段组是指表单字段的分组  A 字">
+<meta property="og:type" content="article">
+<meta property="og:title" content="schema 动态表单设计及部分实现">
+<meta property="og:url" content="http://example.com/2021/06/11/dynamic-form/index.html">
 <meta property="og:site_name" content="candice">
+<meta property="og:description" content="表单涉及到的交互场景简单交互（AB 字段代表单个或多个字段）  A 字段的值控制 B 字段的显隐 A 字段值控制 B 字段的属性 A 字段值控制 B 字段的值  下拉选择相关  提供请求接口地址或者数据请求方法回去请求下拉选择的参数， 或者直接传入下拉选项，这时候 A 字段的值修改需要清掉 B 字段的值 A 字段的值改变 B 字段需要重新请求  字段组相关的功能，字段组是指表单字段的分组  A 字">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-06-11T02:54:04.148Z">
+<meta property="article:modified_time" content="2021-06-11T02:54:04.148Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/">
+<link rel="canonical" href="http://example.com/2021/06/11/dynamic-form/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'en'
   };
 </script>
 
-  <title>candice</title>
+  <title>schema 动态表单设计及部分实现 | candice</title>
   
 
 
@@ -139,9 +143,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
@@ -157,10 +162,9 @@
       <meta itemprop="name" content="candice">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/06/11/dynamic-form/" class="post-title-link" itemprop="url">schema 动态表单设计及部分实现</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          schema 动态表单设计及部分实现
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -183,7 +187,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>表单涉及到的交互场景<br>简单交互（AB 字段代表单个或多个字段）</p>
+        <p>表单涉及到的交互场景<br>简单交互（AB 字段代表单个或多个字段）</p>
 <ol>
 <li>A 字段的值控制 B 字段的显隐</li>
 <li>A 字段值控制 B 字段的属性</li>
@@ -222,21 +226,23 @@
 <h3 id="编辑态的处理"><a href="#编辑态的处理" class="headerlink" title="编辑态的处理"></a>编辑态的处理</h3><p>编辑态和新增态的区别是初始值的处理，值的初始化处理 initValue，属性初始化的处理 customPropsDefaultValue，对于 B 字段依赖 A 字段下来选择回来的<br>数据的处理，比如 options 内的其他参数，则可以用 afterOptions 处理</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文只是对设计上做处理，可针对各种不同基础组件，内容是表单的设计还包括特殊类型入下来选择组件的设计，具体的实现可根据不同基础框架自行封装。上面的设计结合起来能处理大部分的场景。但是还有很多优化的地方，比如下拉选择同接口和参数的数据缓存等。<br>需要有实现直接用的可以参考 <a target="_blank" rel="noopener" href="https://x-render.gitee.io/form-render">https://x-render.gitee.io/form-render</a>（基于 antd），开箱即用。</p>
 
-      
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
+
+        
+
+
+        
       </footer>
+    
   </article>
   
   
-  
-
-
   
 
 
@@ -289,6 +295,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E5%8A%9F%E8%83%BD"><span class="nav-number">1.</span> <span class="nav-text">其他功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#schema-%E8%AE%BE%E8%AE%A1"><span class="nav-number">2.</span> <span class="nav-text">schema 设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E4%BA%A4%E4%BA%92%E4%B9%8B-A-%E5%AD%97%E6%AE%B5%E7%9A%84%E5%80%BC%E6%8E%A7%E5%88%B6-B-%E5%AD%97%E6%AE%B5%E7%9A%84%E6%98%BE%E9%9A%90"><span class="nav-number">2.1.</span> <span class="nav-text">简单交互之 A 字段的值控制 B 字段的显隐</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#A-%E5%AD%97%E6%AE%B5%E5%80%BC%E6%8E%A7%E5%88%B6-B-%E5%AD%97%E6%AE%B5%E7%9A%84%E5%B1%9E%E6%80%A7%E6%88%96%E8%80%85%E5%80%BC"><span class="nav-number">2.2.</span> <span class="nav-text">A 字段值控制 B 字段的属性或者值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E6%8B%89%E9%80%89%E6%8B%A9%E7%9A%84%E5%A4%84%E7%90%86"><span class="nav-number">2.3.</span> <span class="nav-text">下拉选择的处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E8%BE%91%E6%80%81%E7%9A%84%E5%A4%84%E7%90%86"><span class="nav-number">2.4.</span> <span class="nav-text">编辑态的处理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
