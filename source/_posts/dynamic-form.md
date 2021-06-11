@@ -3,7 +3,7 @@ title: schema 动态表单设计及部分实现
 ---
 # 背景
 
-为什么需要动态表单？先看以下场景，比如表单中有 A、B 两个字段
+为什么需要动态表单及动态交互怎么用 schema 设计？先看以下场景，比如表单中有 A、B 两个字段
 
 ### 1. 简单交互
 
@@ -174,7 +174,7 @@ const getPathListeners = ({config = {}, name, customProps, context}) => {
 
 ```
 
-第二部是在组件内比如 select 组件、cascader 等组件内部发起请求
+第二部是在组件内比如 select 组件、cascader 等组件内部发起请求，下面是我们项目内提取的 hooks，可直接享用。
 
 ```javascript
 export const serviceOptionHooks = ({optionsTransfer, path, param, options: propsOptions = [], afterOptions, service}: IServiceOptionParam) => {
